@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="53dp"
+        android:layout_height="25dp"
+        android:text="Minutes"
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="371dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="154dp"
+        android:layout_height="46dp"
+        android:text="Set Timer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <Spinner
+        android:id="@+id/hours_spinner"
+        android:layout_width="43dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="223dp"
+        tools:layout_editor_absoluteY="210dp"
+        />
+
+    <Spinner
+        android:id="@+id/minutes_spinner"
+        android:layout_width="44dp"
+        android:layout_height="46dp"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="210dp" />
+
+    <Spinner
+        android:id="@+id/breaks_spinner"
+        android:layout_width="44dp"
+        android:layout_height="46dp"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="210dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="43dp"
+        android:layout_height="19dp"
+        android:text="Hours"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="189dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
