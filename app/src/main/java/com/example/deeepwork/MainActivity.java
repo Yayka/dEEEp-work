@@ -13,10 +13,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-public class MainActivity extends AppCompatActivity {
-
+    private int hours = 0;
+    private int mins = 0;
+    private int breakFreqs = 0;
+    private Spinner hours_spinner;
+    private Spinner minutes_spinner;
+    private Spinner breaks_spinner;
 
 
     @Override
@@ -35,26 +41,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Spinner hours_spinner = (Spinner) findViewById(R.id.hours_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        hours_spinner = (Spinner) findViewById(R.id.hours_spinner);
         ArrayAdapter<CharSequence> hours_adapter = ArrayAdapter.createFromResource(this,
                 R.array.hours_options, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
         hours_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         hours_spinner.setAdapter(hours_adapter);
+        hours_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+                int spinner_pos = hours_spinner.getSelectedItemPosition();
+                String[] hours_values = getResources().getStringArray(R.array.hours_options);
+                int time = Integer.valueOf(hours_values[spinner_pos]);
+                System.out.println(time);
 
-        Spinner minutes_spinner = (Spinner) findViewById(R.id.minutes_spinner);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        minutes_spinner = (Spinner) findViewById(R.id.minutes_spinner);
         ArrayAdapter<CharSequence> minutes_adapter = ArrayAdapter.createFromResource(this,
                 R.array.minutes_options, android.R.layout.simple_spinner_item);
         minutes_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         minutes_spinner.setAdapter(minutes_adapter);
+        minutes_spinner.setOnItemSelectedListener(this);
 
-        Spinner breaks_spinner = (Spinner) findViewById(R.id.breaks_spinner);
+
+        breaks_spinner = (Spinner) findViewById(R.id.breaks_spinner);
         ArrayAdapter<CharSequence> breaks_adapter = ArrayAdapter.createFromResource(this,
                 R.array.breaks_options, android.R.layout.simple_spinner_item);
         breaks_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breaks_spinner.setAdapter(breaks_adapter);
+        breaks_spinner.setOnItemSelectedListener(this);
+
     }
 
     @Override
@@ -77,5 +98,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Auto-generated method stub
     }
 }
