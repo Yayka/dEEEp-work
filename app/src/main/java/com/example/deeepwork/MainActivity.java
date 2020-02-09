@@ -1,5 +1,6 @@
 package com.example.deeepwork;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity{
         Button buttonStart = (Button) findViewById(R.id.bt_start);
         buttonStart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
+                launchTimer();
             }
         });
 
@@ -140,6 +141,14 @@ public class MainActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void launchTimer() {
+        Intent intent = new Intent(this, TimerActivity.class);
+        intent.putExtra("hours", String.valueOf(this.hours));
+        intent.putExtra("minutes", String.valueOf(this.minutes));
+        intent.putExtra("breakFreqs", String.valueOf(this.breakFreqs));
+        startActivity(intent);
     }
 
 
