@@ -12,9 +12,9 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="64dp"
+        android:layout_width="55dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="46dp"
         android:layout_marginTop="32dp"
         android:text="Minutes"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -24,7 +24,7 @@
         android:id="@+id/bt_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="120dp"
         android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,33 +61,33 @@
 
     <Spinner
         android:id="@+id/minutes_spinner"
-        android:layout_width="67dp"
-        android:layout_height="65dp"
+        android:layout_width="62dp"
+        android:layout_height="61dp"
         android:layout_marginEnd="132dp"
         android:background="#ffffff"
-        android:entries="@array/minutes_options"
         android:dropDownSelector="#000000"
+        android:entries="@array/minutes_options"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
     <Spinner
         android:id="@+id/breaks_spinner"
-        android:layout_width="69dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="132dp"
+        android:layout_width="61dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="96dp"
         android:background="#ffffff"
         android:dropDownSelector="#000000"
         android:entries="@array/breaks_options"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/minutes_spinner" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="40dp"
         android:layout_height="20dp"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="132dp"
         android:layout_marginTop="32dp"
         android:text="Hours"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,13 +95,22 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="97dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="288dp"
-        android:text="Breaks every:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/breaks_spinner"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="85dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="100dp"
+        android:text="Breaks every"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hours_spinner" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="85dp"
+        android:text="minutes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minutes_spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

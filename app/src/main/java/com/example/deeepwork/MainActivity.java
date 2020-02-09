@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
         Button buttonStart = (Button) findViewById(R.id.bt_start);
         buttonStart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
+                launchTimer();
             }
         });
 
@@ -169,6 +169,14 @@ public class MainActivity extends AppCompatActivity{
 
     public void launchSetWeight() {
         Intent intent = new Intent(this, ScalesActivity.class);
+        startActivity(intent);
+    }
+
+    public void launchTimer() {
+        Intent intent = new Intent(this, TimerActivity.class);
+        intent.putExtra("hours", String.valueOf(this.hours));
+        intent.putExtra("minutes", String.valueOf(this.minutes));
+        intent.putExtra("breakFreqs", String.valueOf(this.breakFreqs));
         startActivity(intent);
     }
 
