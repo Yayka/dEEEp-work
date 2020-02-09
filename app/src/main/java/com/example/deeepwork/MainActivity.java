@@ -1,5 +1,7 @@
 package com.example.deeepwork;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity{
     private int hours = 0;
     private int minutes = 0;
     private int breakFreqs = 0;
+
+    private int weight = 0;
+
     private Spinner hours_spinner;
     private Spinner minutes_spinner;
     private Spinner breaks_spinner;
@@ -30,17 +35,40 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //get phone weight if saved otherwise to set weight screen
+        SharedPreferences sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
+
+        //SharedPreferences.Editor editor = sharedPreferences.edit();
+        //editor.clear();
+        //sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
+
+
+
+        System.out.println("SOMETHING ABOUT TO HAPPEN");
+        this.weight = sharedPreferences.getInt("weight", 0);
+
+        if(weight == 0) {
+            System.out.println("NEED TO WEIGHT");
+            launchSetWeight();
+            sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
+            this.weight = sharedPreferences.getInt("weight", 0);
+            System.out.println("weight" + this.weight);
+        }
+        else {
+            System.out.println("NO NEED TO WEIGHT");
+            System.out.println("weight" + this.weight);
+        }
+        System.out.println("SOMETHING HAPPENED");
+
+        //if(!sharedPreferences.contains("weight")){
+/*            this.weight = sharedPreferences.getInt("weight", -1);
+            if (weight == -1) {*/
+
+
+
+
+
 
         hours_spinner = (Spinner) findViewById(R.id.hours_spinner);
         ArrayAdapter<CharSequence> hours_adapter = ArrayAdapter.createFromResource(this,
@@ -53,10 +81,9 @@ public class MainActivity extends AppCompatActivity{
                 Object item = parent.getItemAtPosition(pos);
                 int spinner_pos = hours_spinner.getSelectedItemPosition();
                 String[] hours_values = getResources().getStringArray(R.array.hours_options);
-                System.out.println(hours_values[spinner_pos].toString());
                 if (spinner_pos != 0) {
                     hours = Integer.parseInt(hours_values[spinner_pos]);
-                    System.out.println(hours);
+                    System.out.println("hours" + hours);
                 }
             }
             @Override
@@ -76,10 +103,9 @@ public class MainActivity extends AppCompatActivity{
                 Object item = parent.getItemAtPosition(pos);
                 int spinner_pos = minutes_spinner.getSelectedItemPosition();
                 String[] minutes_values = getResources().getStringArray(R.array.minutes_options);
-                System.out.println(minutes_values[spinner_pos].toString());
                 if (spinner_pos != 0) {
                     minutes = Integer.parseInt(minutes_values[spinner_pos]);
-                    System.out.println(minutes);
+                    System.out.println("minutes " + minutes);
                 }
             }
             @Override
@@ -99,10 +125,9 @@ public class MainActivity extends AppCompatActivity{
                 Object item = parent.getItemAtPosition(pos);
                 int spinner_pos = breaks_spinner.getSelectedItemPosition();
                 String[] breaks_values = getResources().getStringArray(R.array.breaks_options);
-                System.out.println(breaks_values[spinner_pos].toString());
                 if (spinner_pos != 0) {
                     breakFreqs = Integer.parseInt(breaks_values[spinner_pos]);
-                    System.out.println(breakFreqs);
+                    System.out.println("breaks" + breakFreqs);
                 }
             }
             @Override
@@ -140,6 +165,11 @@ public class MainActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void launchSetWeight() {
+        Intent intent = new Intent(this, ScalesActivity.class);
+        startActivity(intent);
     }
 
 

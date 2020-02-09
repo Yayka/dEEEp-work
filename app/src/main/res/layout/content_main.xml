@@ -53,7 +53,6 @@
         android:background="#ffffff"
         android:dropDownSelector="#000000"
         android:entries="@array/hours_options"
-        android:prompt="Select"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toStartOf="@+id/minutes_spinner"
         app:layout_constraintHorizontal_bias="0.0"

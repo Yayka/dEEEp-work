@@ -41,4 +41,5 @@
         <item>60</item>
         <item></item>
     </string-array>
+    <string name="title_activity_scales">ScalesActivity</string>
 </resources>
