@@ -11,14 +11,15 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity{
 
     private int hours = 0;
-    private int mins = 0;
+    private int minutes = 0;
     private int breakFreqs = 0;
     private Spinner hours_spinner;
     private Spinner minutes_spinner;
@@ -47,17 +48,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         hours_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hours_spinner.setAdapter(hours_adapter);
         hours_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+            //@Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
                 int spinner_pos = hours_spinner.getSelectedItemPosition();
                 String[] hours_values = getResources().getStringArray(R.array.hours_options);
-                int time = Integer.valueOf(hours_values[spinner_pos]);
-                System.out.println(time);
-
+                System.out.println(hours_values[spinner_pos].toString());
+                if (spinner_pos != 0) {
+                    hours = Integer.parseInt(hours_values[spinner_pos]);
+                    System.out.println(hours);
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
             }
         });
 
@@ -66,15 +70,53 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 R.array.minutes_options, android.R.layout.simple_spinner_item);
         minutes_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         minutes_spinner.setAdapter(minutes_adapter);
-        minutes_spinner.setOnItemSelectedListener(this);
-
+        minutes_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //@Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+                int spinner_pos = minutes_spinner.getSelectedItemPosition();
+                String[] minutes_values = getResources().getStringArray(R.array.minutes_options);
+                System.out.println(minutes_values[spinner_pos].toString());
+                if (spinner_pos != 0) {
+                    minutes = Integer.parseInt(minutes_values[spinner_pos]);
+                    System.out.println(minutes);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
 
         breaks_spinner = (Spinner) findViewById(R.id.breaks_spinner);
         ArrayAdapter<CharSequence> breaks_adapter = ArrayAdapter.createFromResource(this,
                 R.array.breaks_options, android.R.layout.simple_spinner_item);
         breaks_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breaks_spinner.setAdapter(breaks_adapter);
-        breaks_spinner.setOnItemSelectedListener(this);
+        breaks_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //@Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+                int spinner_pos = breaks_spinner.getSelectedItemPosition();
+                String[] breaks_values = getResources().getStringArray(R.array.breaks_options);
+                System.out.println(breaks_values[spinner_pos].toString());
+                if (spinner_pos != 0) {
+                    breakFreqs = Integer.parseInt(breaks_values[spinner_pos]);
+                    System.out.println(breakFreqs);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        Button buttonStart = (Button) findViewById(R.id.bt_start);
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+            }
+        });
 
     }
 
@@ -101,8 +143,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
-    }
+
 }
